@@ -5,7 +5,8 @@
 
 
 if [ "$#" -gt 3 ]; then
-	>2& echo "Quote your commands. You can only race 2 commands (for now) (sorry!)"
+	>&2 echo "Quote your commands. You can only race 2 commands (for now) (sorry!)"
+	exit 1
 fi
 
 if [[ ! "$1" =~ ^[0-9]+$ ]]; then
@@ -40,3 +41,4 @@ else
 	difference=0
 	echo "Same execution time"
 fi
+exit 0
