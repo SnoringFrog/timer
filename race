@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Quick and dirty little script to compare the execution times of two commands using timer
+# You'll need to quote each command. 
+
+if [ "$#" -gt 3 ]; then
+	>2& echo "Quote your commands. You can only race 2 commands (for now) (sorry!)"
+fi
+
+iterations=$1
+cmd1="$2"
+cmd2="$3"
+
+time1=`timer $1 $2`
+time2=`timer $1 $3`
+
+time1_gt_time2=`echo "$time1 > $time2" | bc`
+time2_gt_time1=`echo "$time2 > $time1" | bc`
+
+echo "cmd1: $cmd1"
+echo "$time1"
+echo "cmd2: $cmd2"
+echo "$time2"
+echo ""
+
+if [[ $time2_gt_time1 -eq 1 ]]; then
+	difference=`echo $time2-$time1 | bc -l`
+	echo "cmd1 is $difference seconds faster"
+elif [[ $time1_gt_time2 -eq 1 ]]; then
+	difference=`echo $time1-$time2 | bc -l`
+	echo "cmd2 is $difference seconds faster"
+else
+	difference=0
+	echo "Same execution time"
+fi
