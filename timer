@@ -1,0 +1,56 @@
+#!/bin/bash
+#Compute average time (in seconds) to run a command $1 number of times
+
+# TODO: -v/--verbose to print each iteration time as it occurs
+# TODO: options to format output (at least split into minutes:seconds)
+
+usage () {
+	>&2 echo "usage: $0 [iterations] command"
+	>&2 echo "(iterations defaults to 10)"
+}
+
+convert_to_min_sec () {
+	min=`echo $(($1 / 60))`
+	sec=`echo $(($1 - ($min*60)))`
+
+	echo "$min:$sec"
+	#echo "$min""m$sec""s"
+}
+
+if [ -z $1 ]; then
+	usage
+	exit 1
+fi
+
+if [[ $1 =~ ^[0-9]+$ ]]; then
+	if [ $1 == "0" ]; then
+		echo 0
+		exit 0
+	fi
+	if [ -z $2 ]; then
+		usage
+		exit 1
+	fi
+	iterations=$1
+	cmd="${@:2}"
+else
+	iterations=10
+	cmd="$@"
+fi
+
+total_seconds=0
+x=0
+while ((x<$iterations)); do
+	this_time=`(time $cmd 2>&1 1>/dev/null) 2>&1`
+
+	just_minutes=`echo "$this_time" | grep real | cut -d$'\t' -f2 | cut -d"m" -f1`
+	just_seconds=`echo "$this_time" | grep real | cut -d"m" -f2 | cut -d"s" -f1`
+	
+	time_in_seconds=`echo "$just_minutes*60 + $just_seconds" | bc -l`
+	total_seconds=`echo "$total_seconds + $time_in_seconds" | bc -l`
+	let x++
+done
+
+avg=`echo "$total_seconds / $iterations" | bc -l | sed -e 's/0*$//'`
+echo $avg
+exit 0
