@@ -3,13 +3,20 @@
 # Quick and dirty little script to compare the execution times of two commands using timer
 # You'll need to quote each command. 
 
+
 if [ "$#" -gt 3 ]; then
 	>2& echo "Quote your commands. You can only race 2 commands (for now) (sorry!)"
 fi
 
-iterations=$1
-cmd1="$2"
-cmd2="$3"
+if [[ ! "$1" =~ ^[0-9]+$ ]]; then
+	iterations=10
+	cmd1="$1"
+	cmd2="$2"
+else
+	iterations=$1
+	cmd1="$2"
+	cmd2="$3"
+fi
 
 time1=`timer $1 $2`
 time2=`timer $1 $3`
