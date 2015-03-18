@@ -1,3 +1,8 @@
+```
+_|_ o ._ _   _  ._
+ |_ | | | | (/_ |)
+```
+
 # timer
 Simple script for calculating the average run time of a command over n iterations.
 
