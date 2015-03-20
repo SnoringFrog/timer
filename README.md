@@ -1,8 +1,8 @@
 ```
-_|_ o ._ _   _  ._
- |_ | | | | (/_ |)
+░▀█▀░▀█▀░█▄█░█▀▀░█▀▄
+░░█░░░█░░█░█░█▀▀░█▀▄
+░░▀░░▀▀▀░▀░▀░▀▀▀░▀░▀
 ```
-
 # timer
 Simple script for calculating the average run time of a command over n iterations.
 
@@ -14,6 +14,12 @@ Simple script for calculating the average run time of a command over n iteration
 If, for some reason, the command you're running is composed entirely of numbers, you'll have to provide some number of iterations.
 
 Output is in seconds.
+
+---
+
+░█▀▄░█▀█░█▀▀░█▀▀
+░█▀▄░█▀█░█░░░█▀▀
+░▀░▀░▀░▀░▀▀▀░▀▀▀
 
 # race
 The race script is just a quick way to compare two commands against each other. I only spent a couple minutes on it, so it's nothing too fancy.
