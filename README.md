@@ -17,9 +17,11 @@ Output is in seconds.
 
 ---
 
+```
 ░█▀▄░█▀█░█▀▀░█▀▀
 ░█▀▄░█▀█░█░░░█▀▀
 ░▀░▀░▀░▀░▀▀▀░▀▀▀
+```
 
 # race
 The race script is just a quick way to compare two commands against each other. I only spent a couple minutes on it, so it's nothing too fancy.
