@@ -19,7 +19,7 @@ convert_to_min_sec () {
 
 if [ -z $1 ]; then
 	usage
-	exit 1
+	exit 64
 fi
 
 if [[ $1 =~ ^[0-9]+$ ]]; then
@@ -29,7 +29,7 @@ if [[ $1 =~ ^[0-9]+$ ]]; then
 	fi
 	if [ -z $2 ]; then
 		usage
-		exit 1
+		exit 64
 	fi
 	iterations=$1
 	cmd="${@:2}"
